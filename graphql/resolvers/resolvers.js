@@ -4,9 +4,11 @@ module.exports = {
 	getAllQandA: async (args) => {
 		return QandA.find({});
 	},
+
 	getQandA: async (args) => {
 		return QandA.findById(args._id);
 	},
+
 	addQandA: async (args) => {
 		const newQandA = new QandA({
 			question: args.question,
@@ -19,6 +21,7 @@ module.exports = {
 			throw err;
 		}
 	},
+
 	updateQandA: (args) => {
 		if (!args._id) return;
         else
@@ -33,6 +36,7 @@ module.exports = {
                 { new: true }
             );
 	},
+
     deleteQandA: (args) => {
 		if (!args._id) return;
         else return QandA.findByIdAndDelete(args._id);

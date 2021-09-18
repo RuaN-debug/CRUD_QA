@@ -1,8 +1,9 @@
-const graphQlSchema = require("./graphql/schema/schema");
-const graphQlResolvers = require('./graphql/resolvers/resolvers');
-const express = require('express');
+const graphQlResolvers = require('./graphql/resolvers/merge');
 const graphqlHttp = require('express-graphql').graphqlHTTP;
+const isAuth = require('./graphql/authorization/isAuth');
+const graphQlSchema = require("./graphql/schema/schema");
 const mongoose = require('mongoose');
+const express = require('express');
 
 const app = express();
 app.use(express.json())
@@ -17,7 +18,7 @@ app.use((req, res, next) => {
     }
     next();
 });
-//app.use(isAuth);
+app.use(isAuth);
 
 app.use('/graphql', graphqlHttp({
     schema: graphQlSchema,

@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_USER": "random_user",
+        "MONGO_PASSWORD": "APshuprkSLJYkLY0",
+        "MONGO_DB": "crud-q-and-a"
+    }
+}

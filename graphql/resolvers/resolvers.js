@@ -24,21 +24,21 @@ module.exports = {
 
 	updateQandA: (args) => {
 		if (!args._id) return;
-        else
-            return QandA.findByIdAndUpdate(
-                args._id,
-                {
-                    $set: {
-                        question: args.question,
-                        answers: args.answers,
-                    },
-                },
-                { new: true }
-            );
+		else
+			return QandA.findByIdAndUpdate(
+				args._id,
+				{
+					$set: {
+						question: args.question,
+						answers: args.answers,
+					},
+				},
+				{ new: true }
+			);
 	},
 
-    deleteQandA: (args) => {
+	deleteQandA: (args) => {
 		if (!args._id) return;
-        else return QandA.findByIdAndDelete(args._id);
-    }
+		else return QandA.findByIdAndDelete(args._id);
+	},
 };

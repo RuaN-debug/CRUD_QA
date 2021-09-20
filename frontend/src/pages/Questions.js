@@ -99,26 +99,35 @@ class QuestionsPage extends Component {
 		if(this.state.onUpdate){
 			requestBody = {
 				query: `
-					mutation{
-						updateQandA(_id: "${this.updateId}", question: "${question}", answers: "${answers}"){
+					mutation UpdateQandA($_id: ID!, $question: String!, $answers: [String!]!){
+						updateQandA(_id: $_id, question: $question, answers: $answers){
 							_id
 							question
 							answers
 						}
 					}
 				`,
+				variables: {
+					_id: this.updateId,
+					question: question,
+					answers: answers
+				}
 			};
 		}else{
 			requestBody = {
 				query: `
-					mutation{
-						addQandA(question: "${question}", answers: "${answers}"){
+					mutation AddQandA($question: String!, $answers: [String!]!){
+						addQandA(question: $question, answers: $answers){
 							_id
 							question
 							answers
 						}
 					}
 				`,
+				variables:{
+					question: question,
+					answers: answers
+				}
 			};
 		}
 		fetch("http://localhost:8000/graphql", {
@@ -129,40 +138,32 @@ class QuestionsPage extends Component {
 				Authorization: "Bearer " + this.context.token,
 			},
 		})
-			.then((res) => {
-				if (res.status !== 200 && res.status !== 201) {
-					throw new Error("Failed!");
-				}
-				return res.json();
-			})
-			.then((resData) => {
-				if(this.state.onUpdate){
-					this.setState((prevState) => {
-						const updatedQuestions = [...prevState.questions];
-						updatedQuestions.push({
-							//_id: resData.data.updateQandA._id,
-							question: resData.data.updateQandA.question,
-							answers: resData.data.updateQandA.answers,
-						});
-						//this.setState({ onUpdate: true, title: "Update question" });
-						return { questions: updatedQuestions };
-					}, {onUpdate: false, title: "Add question"});
-				}else{
-					this.setState((prevState) => {
-						const updatedQuestions = [...prevState.questions];
-						updatedQuestions.push({
-							_id: resData.data.addQandA._id,
-							question: resData.data.addQandA.question,
-							answers: resData.data.addQandA.answers,
-						});
-						return { questions: updatedQuestions };
+		.then((res) => {
+			if (res.status !== 200 && res.status !== 201) {
+				throw new Error("Failed!");
+			}
+			return res.json();
+		})
+		.then((resData) => {
+			if(this.state.onUpdate){
+				this.setState({ onUpdate: false, title: "Add question" });
+				this.fetchQuestions();
+			}else{
+				this.setState((prevState) => {
+					const updatedQuestions = [...prevState.questions];
+					updatedQuestions.push({
+						_id: resData.data.addQandA._id,
+						question: resData.data.addQandA.question,
+						answers: resData.data.addQandA.answers,
 					});
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-				this.setState({ isLoading: false });
-			});
+					return { questions: updatedQuestions };
+				});
+			}
+		})
+		.catch((err) => {
+			console.log(err);
+			this.setState({ isLoading: false });
+		});
 	};
 
 	modalCancelHandler = () => {
@@ -211,7 +212,7 @@ class QuestionsPage extends Component {
 					{(this.state.onUpdate || this.state.creating) && <div className="backdrop"></div>}
 					{(this.state.onUpdate || this.state.creating) && (
 						<Modal
-							title
+							title={this.state.title}
 							canCancel
 							canConfirm
 							canUpdate

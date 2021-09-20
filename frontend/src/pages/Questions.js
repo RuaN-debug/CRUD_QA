@@ -244,6 +244,7 @@ class QuestionsPage extends Component {
 						<div className="events-control">
 							<p>Create your questions and answers</p>
 							<button
+								id="create-question"
 								className="btn"
 								onClick={this.startCreateQuestionHandler}
 							>

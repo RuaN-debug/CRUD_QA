@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .form-control label, input{
@@ -28,10 +28,12 @@ body {
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.26);
   color: white;
   cursor: pointer;
+  transition: all .3s ease;
 }
 
 .form-actions button:hover, button:active,
 .btn:hover, .btn:active{
   background: rgb(8, 155, 106);
   border-color:rgb(8, 155, 106);
+  color: white;
 }

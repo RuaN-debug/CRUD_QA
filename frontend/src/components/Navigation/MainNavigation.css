@@ -45,10 +45,12 @@
     cursor: pointer;
     margin: 0;
     vertical-align: middle;
+    transition: all .4s ease;
 }
 
 .main-navigation__items a:hover, a:active, a.active, button:hover, button:active{
     background: #ffffff;
-    color: rgb(145, 0, 202);
+    /*color: rgb(145, 0, 202);*/
+    color: rgb(8, 155, 106);
     border-radius: 5px;
 }

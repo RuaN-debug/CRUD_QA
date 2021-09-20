@@ -5,17 +5,16 @@
     width: 40rem;
     max-width: 90%;
     list-style: lower-alpha;
-
 }
 
 .events__list-item{
     margin: 1rem 0;
     padding: 1rem;
-    border: 1px solid rgb(10, 206, 141);
+    border: 3px solid rgb(10, 206, 141);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .events__list-item h1{
@@ -33,4 +32,8 @@
 
 .events__list-item p{
     margin: 0;
+}
+
+.list-answers{
+    list-style-type: lower-alpha;
 }

@@ -37,3 +37,12 @@ body {
   border-color:rgb(8, 155, 106);
   color: white;
 }
+
+.form-user{
+  width: 62%; 
+  margin-left: 4rem;
+}
+
+.form-answers label input{
+  margin-top: .5rem;
+}

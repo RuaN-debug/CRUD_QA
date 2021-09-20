@@ -89,11 +89,22 @@ class QuestionsPage extends Component {
 		this.setState({ creating: false });
 		const question = this.questionRef.current.value;
 		const answers = [];
+
+		if (question.trim().length === 0){
+			return
+		}
+		
 		answers.push(this.answerAref.current.value.toString());
 		answers.push(this.answerBref.current.value.toString());
 		answers.push(this.answerCref.current.value.toString());
 		answers.push(this.answerDref.current.value.toString());
 		answers.push(this.answerEref.current.value.toString());
+
+		for(let i = 0; i < 5; i++){
+			if (answers[i].trim().length === 0){
+				return
+			}
+		}
 
 		let requestBody;
 		if(this.state.onUpdate){
@@ -221,13 +232,13 @@ class QuestionsPage extends Component {
 							questions={this.state.questions}
 						>
 							<form>
-								<div className="form-control">
+								<div className="form-control form-questions">
 									<label>
 										Question
 										<input type="text" ref={this.questionRef}></input>
 									</label>
 								</div>
-								<div className="form-control">
+								<div className="form-control form-answers">
 									<label>
 										Answers
 										<input type="text" ref={this.answerAref}></input>

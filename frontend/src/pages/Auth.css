@@ -1,6 +1,28 @@
-.auth-form{
-    width: 25em;
-    max-width: 80%;
-    margin: 5rem auto;
+.auth-form {
+	width: 25em;
+	max-width: 80%;
+	margin: 5rem auto;
+	border: 3px solid rgb(10, 206, 141);
+	padding: 1rem;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 10px;
 }
-
+.user-test,
+.user-test-signup,
+.user-signedup {
+	margin: auto;
+	color: red;
+	margin-left: 2.4rem;
+	padding-bottom: 1rem;
+}
+.user-test-signup{
+	margin-left: 7rem;
+}
+.user-signedup{
+    margin-left: 8rem;
+    color: rgb(15, 211, 15);
+}
+#submit {
+	margin-left: 4rem;
+}

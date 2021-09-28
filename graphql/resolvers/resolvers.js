@@ -10,7 +10,7 @@ module.exports = {
 	},
 
 	addQandA: async (args) => {
-		const newQandA = new QandA({
+		const newQandA = await new QandA({
 			question: args.question,
 			answers: args.answers,
 		});

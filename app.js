@@ -23,7 +23,8 @@ app.use(isAuth);
 app.use('/graphql', graphqlHttp({
     schema: graphQlSchema,
     rootValue: graphQlResolvers,
-    graphiql: true // Interface to run tests
+    graphiql: true, // Interface to run tests
+    pretty: true
 }));
 
 mongoose.connect(

@@ -1,0 +1,78 @@
+[33mcommit 1d0d86d02f4bb2c03ad646e4050df85cf1bf1127[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Sun Oct 3 22:33:49 2021 -0300
+
+    Relay implemented
+
+[33mcommit 9d1a61649a89df4b567762f0016bb7eb8b97a2d1[m
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Tue Sep 28 14:29:22 2021 -0300
+
+    Relay implementation started
+
+[33mcommit aeb3423b3a59b698bfe76fcb4d9240f26fe95242[m
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Tue Sep 28 14:28:57 2021 -0300
+
+    Relay implementation started
+
+[33mcommit d8bef53ef8a66c18d93fac7574638da39a1010e7[m
+Merge: adf05ab 0c2156a
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Mon Sep 20 15:26:25 2021 -0300
+
+    Merge branch 'main' of github.com:RuaN-debug/CRUD_QA
+
+[33mcommit adf05ab6c46b828c3131e867961421f1f7a45d8c[m
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Mon Sep 20 15:26:03 2021 -0300
+
+    Added command to run server and client
+
+[33mcommit 0c2156a980b39d7ca45a153805ebe7f6b573ad6c[m
+Author: Ruan Marcos <54671133+RuaN-debug@users.noreply.github.com>
+Date:   Mon Sep 20 15:25:22 2021 -0300
+
+    Update README.md
+
+[33mcommit 8c7c80d110416bc5b92a5daed5880898b6f54aad[m
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Mon Sep 20 14:57:03 2021 -0300
+
+    Added authentication logs
+
+[33mcommit 3a114c744e1c96a36f6ecb7a4390a2ed61bb3a50[m
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Mon Sep 20 12:44:35 2021 -0300
+
+    Changed styles
+
+[33mcommit ff9eba8a1c33ca0027a92df204356aadb597e814[m
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Mon Sep 20 10:46:43 2021 -0300
+
+    Fixed adding bug
+
+[33mcommit 81f0b02a81fcf9f3302751997844fe54b6b3d7fb[m
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Sat Sep 18 23:48:16 2021 -0300
+
+    Added frontend
+
+[33mcommit 35f03246946e15464f9b6e12ff26427e44f3e648[m
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Sat Sep 18 13:40:27 2021 -0300
+
+    Backend finished
+
+[33mcommit ba6f2e4ad34c8d58928b6b4ce8e255d44157ad05[m
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Sat Sep 18 13:04:03 2021 -0300
+
+    Readme created
+
+[33mcommit f1c85c5716210574d1d4f0ec62f477c41aafcc40[m
+Author: RuaN <ruanmbalbino@gmail.com>
+Date:   Sat Sep 18 12:53:51 2021 -0300
+
+    Create, read, update, delete

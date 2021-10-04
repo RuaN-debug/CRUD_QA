@@ -1,14 +1,19 @@
 import AuthContext from "../components/Context/authContext";
+import { graphql, QueryRenderer } from "react-relay";
+import createUser from "./mutations/createUser";
+import RelayEnvironment from "../environment";
 import React, { Component } from "react";
 import "./Auth.css";
 
-class AuthPage extends Component {
+export default class AuthPage extends Component {
 	state = {
 		isLogin: true,
 		userExists: true,
 		userSignupExists: true,
 		userSignedUp: false,
-		errorString: ""
+		errorString: "",
+		email: null,
+		password: null,
 	};
 
 	static contextType = AuthContext;
@@ -17,6 +22,7 @@ class AuthPage extends Component {
 		super(props);
 		this.emailRef = React.createRef();
 		this.passwordRef = React.createRef();
+		this.errorTest = false;
 	}
 
 	switchModeHandler = () => {
@@ -25,73 +31,58 @@ class AuthPage extends Component {
 		});
 	};
 
+	loginUser(){
+		return (
+			<QueryRenderer
+				environment={RelayEnvironment}
+				query={graphql`
+					query AuthQuery($email: String!, $password: String!) {
+						login(email: $email, password: $password) {
+							userId
+							token
+							tokenExpiration
+						}
+					}
+				`}
+				variables={{
+					email: this.state.email,
+					password: this.state.password,
+				}}
+				render={({ error, props }) => {
+					if (props){
+						this.context.login(
+							props.login.token,
+							props.login.userId,
+							props.login.tokenExpiration,
+						);
+					}
+					if(error){
+						this.errorTest = true;
+					}
+				}}
+			/>
+		);
+	}
+	
 	submitHandler = (event) => {
 		event.preventDefault();
 		const email = this.emailRef.current.value;
 		const password = this.passwordRef.current.value;
 
-		if (email.trim().length === 0 || password.trim().length === 0) {
+		if (email.trim().length === 0 || password.trim().length === 0) 
 			return;
-		}
-
-		let requestBody = {
-			query: `
-                query{
-                    login(email: "${email}", password: "${password}"){
-                        userId
-                        token
-                        tokenExpiration
-                    }
-                }
-            `,
-		};
-
-		if (!this.state.isLogin) {
-			requestBody = {
-				query: `
-                    mutation{
-                        addUser(email: "${email}", password: "${password}"){
-                            _id
-                            email
-                        }
-                    }
-                `,
-			};
-		}
-
-		fetch("http://localhost:8000/graphql", {
-			method: "POST",
-			body: JSON.stringify(requestBody),
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-		.then((res) => {
-			if (res.status !== 200 && res.status !== 201) {
-				throw new Error("Failed!");
-			}
-			return res.json();
-		})
-		.then((resData) => {
-			if (this.state.isLogin && resData.data.login.token) {
-				this.context.login(
-					resData.data.login.token,
-					resData.data.login.userId,
-					resData.data.login.tokenExpiration
-				);
-			}else{
-				this.setState({ userSignedUp: true, userSignupExists: true, userExists: true, errorString: "User signed up!" });
-			}
-		})
-		.catch((err) => {
-			if(this.state.isLogin){
+		
+		if(this.state.isLogin){
+			this.setState({ email: email, password: password });
+			if(this.errorTest){
+				console.log("Erro");
+				this.errorTest = false;
 				this.setState({ userSignupExists: true, userExists: false, errorString: "User does not exist or password is incorrect!" });
-			}else{
-				this.setState({ userExists: true, userSignupExists: false, errorString: "User already exists!" })
 			}
-			this.setState({ userSignedUp: false });
-			console.log(err);
-		});
+		}else{
+			this.setState({ userSignedUp: true, userSignupExists: true, userExists: true, errorString: "User signed up!" });
+			createUser(email, password);
+		}
 	};
 
 	render() {
@@ -109,6 +100,7 @@ class AuthPage extends Component {
 						ref={this.passwordRef}
 					></input>
 				</div>
+				{this.state.email && <div>{this.loginUser()}</div>}
 				{this.state.userSignedUp && <div className="user-signedup">
 					{this.state.errorString}
 				</div>}
@@ -128,5 +120,3 @@ class AuthPage extends Component {
 		);
 	}
 }
-
-export default AuthPage;

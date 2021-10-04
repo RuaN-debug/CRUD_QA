@@ -6,7 +6,8 @@ module.exports = {
 	addUser: async (args) => {
 		try {
 			const userFind = await User.findOne({ email: args.email });
-			if (userFind) {
+			if (userFind){
+				console.log("User already exists");
 				throw new Error("User already exists");
 			}
 
@@ -25,21 +26,21 @@ module.exports = {
 	},
 	login: async (args) => {
 		const user = await User.findOne({ email: args.email });
-		if (!user) {
+		if (!user){
+			console.log("User does not exist");
 			throw new Error("User does not exist");
 		}
 
 		const isEqual = await bcrypt.compare(args.password, user.password);
-		if (!isEqual) {
+		if (!isEqual){
+			console.log("Password incorrect");
 			throw new Error("Password incorrect");
 		}
 
 		const token = jwt.sign(
-			{ userId: user._id, email: user.email },
-			"somesupersecretkey",
-			{
-				expiresIn: "1h",
-			}
+			{ userId: user._id, email: user.email }, 
+			"somesupersecretkey", 
+			{expiresIn: "1h"},
 		);
 		return { userId: user._id, token: token, tokenExpiration: 1 };
 	},

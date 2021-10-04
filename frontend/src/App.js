@@ -10,6 +10,7 @@ class App extends Component {
 	state = {
 		token: null,
 		userId: null,
+		tokenExpiration: null,
 	};
 
 	login = (token, userId, tokenExpiration) => {
@@ -32,6 +33,7 @@ class App extends Component {
 						value={{
 							token: this.state.token,
 							userId: this.state.userId,
+							tokenExpiration: this.state.tokenExpiration,
 							login: this.login,
 							logout: this.logout,
 						}}

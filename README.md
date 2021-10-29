@@ -4,7 +4,7 @@ This project was my first contact with Javascript, but after following lots of t
 
 # How to use it?
 
-First you need to clone tis repository with:
+First you need to clone this repository with:
 ```sh
 git clone git@github.com:RuaN-debug/CRUD_QA.git
 ```

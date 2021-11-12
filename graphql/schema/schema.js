@@ -12,14 +12,14 @@ module.exports = buildSchema(`
 		password: String!
 	}
 	type AuthData{
-        userId: ID!
-        token: String!
-        tokenExpiration: Int!
-    }
+        	userId: ID!
+        	token: String!
+        	tokenExpiration: Int!
+    	}
 	type RootQuery {
 		getAllQandA: [QandA!]!
 		getQandA(_id: ID!): QandA!
-        login(email: String!, password: String!): AuthData!
+        	login(email: String!, password: String!): AuthData!
 	}
 	type RootMutation {
 		addQandA(question: String!, answers: [String!]!): QandA!
@@ -28,7 +28,7 @@ module.exports = buildSchema(`
 		addUser(email: String!, password: String!): User!
 	},
 	schema{
-        query: RootQuery
-        mutation: RootMutation
-    }
-	`);
+        	query: RootQuery
+        	mutation: RootMutation
+    	}
+`);

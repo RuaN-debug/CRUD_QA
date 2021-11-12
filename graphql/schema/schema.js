@@ -26,7 +26,7 @@ module.exports = buildSchema(`
 		updateQandA(_id: ID!, question: String!, answers: [String!]!): QandA!
 		deleteQandA(_id: ID!): QandA!
 		addUser(email: String!, password: String!): User!
-	},
+	}
 	schema {
         	query: RootQuery
         	mutation: RootMutation

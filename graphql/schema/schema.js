@@ -6,12 +6,12 @@ module.exports = buildSchema(`
 		question: String!
 		answers: [String!]!
 	}
-	type User{
+	type User {
 		_id: ID!
 		email: String!
 		password: String!
 	}
-	type AuthData{
+	type AuthData {
         	userId: ID!
         	token: String!
         	tokenExpiration: Int!
@@ -27,7 +27,7 @@ module.exports = buildSchema(`
 		deleteQandA(_id: ID!): QandA!
 		addUser(email: String!, password: String!): User!
 	},
-	schema{
+	schema {
         	query: RootQuery
         	mutation: RootMutation
     	}
